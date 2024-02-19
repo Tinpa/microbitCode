@@ -9,6 +9,10 @@ let list = [
 932
 ]
 basic.forever(function () {
-    serial.writeLine("" + (input.rotation(Rotation.Pitch)))
-    pitch = Math.map(input.rotation(Rotation.Pitch), -180, 180, 0, 6)
+    pitch = Math.trunc(Math.map(input.rotation(Rotation.Pitch), -180, 180, 0, 6))
+    if (input.logoIsPressed()) {
+        music.ringTone(list[pitch])
+    } else {
+        music.stopAllSounds()
+    }
 })
